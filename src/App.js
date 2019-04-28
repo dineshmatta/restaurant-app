@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import { Container } from "react-bootstrap";
+import InputCityForm from './components/Forms/InputCityForm';
+import { RestaurantList } from './components/RestaurantList';
+import * as api from './services/api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    cityName: '',
+    restaurantData: [],
+    errors: []
+  }
+
+  handleSubmit = async (value) => {
+    try {
+      const response = await api.getRestaurants(value);
+      this.setState({
+        cityName: value,
+        restaurantData: response,
+        errors: []
+      });
+    } catch (e){
+      this.setState({
+          cityName: value, 
+          restaurantData: [], 
+          errors: e
+      });
+    }    
+  }
+  
+  render() {
+    return (
+      <React.Fragment>
+        <Container>
+          <Header />
+          <InputCityForm submit={this.handleSubmit}/>
+          <RestaurantList data={this.state.restaurantData} />
+        </Container>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
