@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="card"
+  style={
+    Object {
+      "width": "18rem",
+    }
+  }
+>
+  <img
+    alt="Restaurant Image"
+    className="card-img-top"
+    src="https://www.opentable.com/img/restimages/21307.jpg"
+  />
+  <div
+    className="card-body"
+  >
+    <div
+      className="card-title h5"
+    >
+      Scaramouche Restaurant
+    </div>
+    <p
+      className="card-text"
+    >
+      1 Benvenuto Place
+    </p>
+    <button
+      className="btn btn-primary"
+      disabled={false}
+      onClick={[Function]}
+      type="button"
+    >
+      More Details
+    </button>
+  </div>
+</div>
+`;
